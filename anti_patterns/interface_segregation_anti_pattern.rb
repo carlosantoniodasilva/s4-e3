@@ -31,14 +31,19 @@ class Search
   class Builder
     def build(objects)
       objects.map do |object|
-        if object.is_a?(User)
-          "u:#{object.name}"
-        elsif object.is_a?(Category)
-          "c:#{object.name}"
-        else
-          "#{object.first}:#{object.last}"
-        end
+        to_search(object)
       end.join(" ")
+    end
+
+    def to_search(object)
+      case object
+      when User then
+        "u:#{object.name}"
+      when Category
+        "c:#{object.name}"
+      else
+        "#{object.first}:#{object.last}"
+      end
     end
   end
 end
