@@ -1,5 +1,5 @@
-# DIP - The Dependency Inversion Principle
-# Depend on abstractions, not on concretions.
+# ISP - The Interface Segregation Principle
+# Make fine grained interfaces that are client specific.
 
 require "minitest/autorun"
 
