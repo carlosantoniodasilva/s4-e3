@@ -14,7 +14,7 @@ class Search
 
   class Parser
     def parse(query)
-      Hash[*query.split(/\s/).map { |value| value.split(":") }.flatten]
+      Hash[*query.split.map { |value| value.split(":") }.flatten]
     end
   end
 end

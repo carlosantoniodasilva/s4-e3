@@ -20,7 +20,7 @@ class Search
     protected
 
     def split_values(query)
-      query.split(/\s/).map { |value| value.split(":") }
+      query.split.map { |value| value.split(":") }
     end
   end
 
