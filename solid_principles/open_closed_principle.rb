@@ -22,6 +22,13 @@ class Search
     end
   end
 
+end
+
+class SortingSearch < Search
+  def initialize
+    @parser = SortingParser.new
+  end
+
   class SortingParser < Parser
     def split_values(query)
       super.sort_by { |k, v| k }
@@ -41,10 +48,12 @@ describe Search do
       assert_equal ["u", "c"], options.keys
     end
   end
+end
 
-  describe Search::SortingParser do
+describe SortingSearch do
+  describe SortingSearch::SortingParser do
     it "parses the given query and returns a hash of options sorted by key" do
-      parser  = Search::SortingParser.new
+      parser  = SortingSearch::SortingParser.new
       options = parser.parse("u:carlos c:technology")
 
       assert_equal 2, options.size
