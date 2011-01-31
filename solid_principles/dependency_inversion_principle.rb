@@ -24,7 +24,7 @@ class Search
     end
   end
 
-  class SortedParser < Parser
+  class SortingParser < Parser
     def split_values(query)
       super.sort_by { |k, v| k }
     end
@@ -46,7 +46,7 @@ describe Search do
 
   describe "sorted parser" do
     it "parses the given query and returns a hash of options sorted by key" do
-      search  = Search.new(:parser => Search::SortedParser)
+      search  = Search.new(:parser => Search::SortingParser)
       options = search.parse("u:carlos c:technology")
 
       assert_equal 2, options.size
