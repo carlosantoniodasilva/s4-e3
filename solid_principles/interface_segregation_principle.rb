@@ -15,11 +15,8 @@ class Search
   class Builder
     def build(objects)
       objects.map do |object|
-        if object.respond_to?(:to_search)
-          object.to_search
-        else
-          "#{object.first}:#{object.last}"
-        end
+        object = object.to_search if object.respond_to?(:to_search)
+        object.join(":")
       end.join(" ")
     end
   end
@@ -31,7 +28,7 @@ class User
   end
 
   def to_search
-    "u:#{@name}"
+    ["u", @name]
   end
 end
 
@@ -41,7 +38,7 @@ class Category
   end
 
   def to_search
-    "c:#{@name}"
+    ["c", @name]
   end
 end
 
